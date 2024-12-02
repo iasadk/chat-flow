@@ -3,8 +3,12 @@ import { Button } from "@/components/ui/button"
 import { CheckCircle, MessageCircle, Zap, BarChart, Users, Lock } from 'lucide-react'
 import { IFAQItemProps, IFeatureCard, IPricingCardProps, IStepCard, ITestimonialCardProps } from '@/types/Home'
 import Container from '@/components/custom/Container'
+import { ThemeToggleButton } from '@/components/custom/ThemeToggler'
+import { auth } from '@clerk/nextjs/server'
+import { UserButton } from '@clerk/nextjs'
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const { userId }: { userId: string | null } = await auth()
   return (
     <Container className="flex flex-col min-h-screen">
       <header className="px-4 lg:px-6 h-14 flex items-center">
@@ -12,7 +16,14 @@ export default function LandingPage() {
           <MessageCircle className="h-6 w-6" />
           <span className="ml-2 text-2xl font-bold">ChatFlow</span>
         </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
+        <nav className="ml-auto flex gap-4 sm:gap-6 items-center">
+          {!userId && <Link className="text-sm font-medium hover:underline underline-offset-4" href="/sign-in">
+            Sign In
+          </Link>}
+          {!userId && <Link className="text-sm font-medium hover:underline underline-offset-4" href="/sign-up">
+            Sign Up
+          </Link>}
+          {userId && <UserButton/>}
           {/* <Link className="text-sm font-medium hover:underline underline-offset-4" href="#features">
             Features
           </Link>
@@ -22,7 +33,7 @@ export default function LandingPage() {
           <Link className="text-sm font-medium hover:underline underline-offset-4" href="#pricing">
             Pricing
           </Link> */}
-          
+          <ThemeToggleButton />
         </nav>
       </header>
       <main className="flex-1">

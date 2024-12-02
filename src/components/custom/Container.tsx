@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils'
 import React, { ReactNode } from 'react'
 
 type Props = {
-    className: string,
+    className?: string,
     children: ReactNode
 }
 
