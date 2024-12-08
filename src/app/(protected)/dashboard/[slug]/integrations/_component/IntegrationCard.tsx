@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { IntegrationTypes } from "../page";
+import { IntegrationTypes } from "@/constants/Integration";
 
 type Props = IntegrationTypes & {
   handleConnect: (id: string) => void;

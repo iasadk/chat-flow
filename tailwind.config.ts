@@ -9,6 +9,9 @@ const config: Config = {
 	],
 	theme: {
 		extend: {
+			screens:{
+				'xs': '425px',
+			},
 			maxWidth: {
 				'custom-xl': '1520px'
 			},

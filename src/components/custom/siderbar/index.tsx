@@ -19,40 +19,40 @@ import {
   SidebarMenuItem,
   SidebarSeparator,
 } from "@/components/ui/sidebar";
+import { PAGE_BREAD_CRUMBS } from "@/constants/page";
+import { usePaths } from "@/hooks/use-user-nav";
+import { getRedirectLinkWithUser, removeSpecialChars } from "@/lib/utils";
 import { SignOutButton, UserButton, useUser } from "@clerk/nextjs";
+import Link from "next/link";
 import { SubscriptionPlan } from "../subscription";
 import UpgradeCard from "./UpgradeCard";
-import { usePaths } from "@/hooks/use-user-nav";
-import { PAGE_BREAD_CRUMBS } from "@/constants/page";
-import Link from "next/link";
-import { removeSpecialChars } from "@/lib/utils";
 
-
-export async function AppSidebar({slug}: {slug: string}) {
+export async function AppSidebar() {
   const { user } = useUser();
-  const userSlug = removeSpecialChars(`${user?.firstName}-${user?.lastName}`);
   let items = [
     {
       title: "Home",
-      url: `/dashboard/${userSlug}`,
+      slug: "/",
+      url: getRedirectLinkWithUser(""),
       icon: Home,
-      isActive: false
+      isActive: false,
     },
     {
       title: "Automation",
-      url: `/dashboard/${userSlug}/automations`,
+      slug: "automations",
+      url: getRedirectLinkWithUser("automations"),
       icon: Workflow,
-      isActive: false
+      isActive: false,
     },
     {
       title: "Integration",
-      url: `/dashboard/${userSlug}/integrations`,
+      slug: "integrations",
+      url: getRedirectLinkWithUser("integrations"),
       icon: Unplug,
-      isActive: false
+      isActive: false,
     },
   ];
   const { page } = usePaths();
-   console.log("PAGE FROM HOOK", page, slug)
   return (
     <Sidebar>
       <SidebarContent>
@@ -65,7 +65,14 @@ export async function AppSidebar({slug}: {slug: string}) {
             <SidebarMenu className="ml-1 mt-4">
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild isActive={(item.url === slug) || (!PAGE_BREAD_CRUMBS.includes(page) && item.title === "Home")}>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={
+                      item.slug === page ||
+                      (!PAGE_BREAD_CRUMBS.includes(page) &&
+                        item.title === "Home")
+                    }
+                  >
                     <Link href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
@@ -102,7 +109,9 @@ export async function AppSidebar({slug}: {slug: string}) {
                 className="w-[--radix-popper-anchor-width]"
               >
                 <DropdownMenuItem>
-                  <Link href={`/dashboard/${userSlug}/settings`}>Setting</Link>
+                  <Link href={getRedirectLinkWithUser("settings")}>
+                    Setting
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <span>Help</span>

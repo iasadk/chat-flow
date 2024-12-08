@@ -13,10 +13,10 @@ const Layout = ({ children, params }: Props) => {
     <div className="p-3">
       <SidebarProvider defaultOpen={true}>
         {/* SIDEBAR */}
-        <AppSidebar slug={params.slug}/>
+        <AppSidebar />
 
         <main className="w-full">
-          <InfoBar slug={params.slug}/>
+          <InfoBar slug={params.slug} />
           {children}
         </main>
       </SidebarProvider>
