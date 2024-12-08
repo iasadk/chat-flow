@@ -2,7 +2,9 @@ import React from 'react'
 
 type Props = {}
 
-const Page = (props: Props) => {
+const Page = async (props: Props) => {
+  // WIP: SERVER ACTION TO ONBOARD A USER
+
   return (
     <div>Page</div>
   )

@@ -1,8 +1,8 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
-import { ClerkProvider, SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
 import { ThemeProvider } from '@/providers/ThemeProvider'
-const inter = Inter({ subsets: ['latin'] })
+import { ClerkProvider } from '@clerk/nextjs'
+import { Plus_Jakarta_Sans } from 'next/font/google'
+import './globals.css'
+const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'ChatFlow - Create Powerful Chatbots',
@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>
+        <body className={jakarta.className}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"

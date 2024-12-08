@@ -1,14 +1,27 @@
-import Link from 'next/link'
-import { Button } from "@/components/ui/button"
-import { CheckCircle, MessageCircle, Zap, BarChart, Users, Lock } from 'lucide-react'
-import { IFAQItemProps, IFeatureCard, IPricingCardProps, IStepCard, ITestimonialCardProps } from '@/types/Home'
-import Container from '@/components/custom/Container'
-import { ThemeToggleButton } from '@/components/custom/ThemeToggler'
-import { auth } from '@clerk/nextjs/server'
-import { UserButton } from '@clerk/nextjs'
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  CheckCircle,
+  MessageCircle,
+  Zap,
+  BarChart,
+  Users,
+  Lock,
+} from "lucide-react";
+import {
+  IFAQItemProps,
+  IFeatureCard,
+  IPricingCardProps,
+  IStepCard,
+  ITestimonialCardProps,
+} from "@/types/Home";
+import Container from "@/components/custom/Container";
+import { ThemeToggleButton } from "@/components/custom/ThemeToggler";
+import { auth } from "@clerk/nextjs/server";
+import { UserButton } from "@clerk/nextjs";
 
 export default async function LandingPage() {
-  const { userId }: { userId: string | null } = await auth()
+  const { userId }: { userId: string | null } = await auth();
   return (
     <Container className="flex flex-col min-h-screen">
       <header className="px-4 lg:px-6 h-14 flex items-center">
@@ -17,13 +30,31 @@ export default async function LandingPage() {
           <span className="ml-2 text-2xl font-bold">ChatFlow</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6 items-center">
-          {!userId && <Link className="text-sm font-medium hover:underline underline-offset-4" href="/sign-in">
-            Sign In
-          </Link>}
-          {!userId && <Link className="text-sm font-medium hover:underline underline-offset-4" href="/sign-up">
-            Sign Up
-          </Link>}
-          {userId && <UserButton/>}
+          {!userId && (
+            <Link
+              className="text-sm font-medium hover:underline underline-offset-4"
+              href="/sign-in"
+            >
+              Sign In
+            </Link>
+          )}
+          {!userId && (
+            <Link
+              className="text-sm font-medium hover:underline underline-offset-4"
+              href="/sign-up"
+            >
+              Sign Up
+            </Link>
+          )}
+          {userId && (
+            <Link
+              className="text-sm font-medium hover:underline underline-offset-4"
+              href="/dashboard/iasad-arramton"
+            >
+              Dashboard
+            </Link>
+          )}
+          {userId && <UserButton />}
           {/* <Link className="text-sm font-medium hover:underline underline-offset-4" href="#features">
             Features
           </Link>
@@ -45,7 +76,8 @@ export default async function LandingPage() {
                   Create Powerful Chatbots with ChatFlow
                 </h1>
                 <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                  Engage your audience, automate conversations, and boost your business with our intuitive chatbot platform.
+                  Engage your audience, automate conversations, and boost your
+                  business with our intuitive chatbot platform.
                 </p>
               </div>
               <div className="space-x-4">
@@ -55,9 +87,14 @@ export default async function LandingPage() {
             </div>
           </div>
         </section>
-        <section id="features" className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+        <section
+          id="features"
+          className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800"
+        >
           <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">Key Features</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">
+              Key Features
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <FeatureCard
                 icon={<Zap className="h-10 w-10 text-primary" />}
@@ -94,7 +131,9 @@ export default async function LandingPage() {
         </section>
         <section id="how-it-works" className="w-full py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">How It Works</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">
+              How It Works
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <StepCard
                 number={1}
@@ -114,9 +153,14 @@ export default async function LandingPage() {
             </div>
           </div>
         </section>
-        <section id="pricing" className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+        <section
+          id="pricing"
+          className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800"
+        >
           <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">Pricing Plans</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">
+              Pricing Plans
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <PricingCard
                 title="Starter"
@@ -126,7 +170,7 @@ export default async function LandingPage() {
                   "1,000 monthly active users",
                   "Basic bot builder",
                   "Website integration",
-                  "Email support"
+                  "Email support",
                 ]}
               />
               <PricingCard
@@ -137,7 +181,7 @@ export default async function LandingPage() {
                   "10,000 monthly active users",
                   "Advanced bot builder",
                   "Multi-platform integration",
-                  "Priority support"
+                  "Priority support",
                 ]}
                 highlighted={true}
               />
@@ -149,7 +193,7 @@ export default async function LandingPage() {
                   "Unlimited monthly active users",
                   "Custom AI model training",
                   "Dedicated account manager",
-                  "24/7 phone support"
+                  "24/7 phone support",
                 ]}
               />
             </div>
@@ -157,7 +201,9 @@ export default async function LandingPage() {
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">What Our Customers Say</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">
+              What Our Customers Say
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <TestimonialCard
                 quote="ChatFlow has revolutionized our customer service. We've seen a 40% increase in customer satisfaction!"
@@ -179,7 +225,9 @@ export default async function LandingPage() {
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
           <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">Frequently Asked Questions</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">
+              Frequently Asked Questions
+            </h2>
             <div className="max-w-3xl mx-auto space-y-4">
               <FAQItem
                 question="Do I need coding skills to use ChatFlow?"
@@ -208,19 +256,24 @@ export default async function LandingPage() {
                   Ready to Transform Your Customer Engagement?
                 </h2>
                 <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                  Join thousands of businesses already using ChatFlow to create powerful, engaging chatbots.
+                  Join thousands of businesses already using ChatFlow to create
+                  powerful, engaging chatbots.
                 </p>
               </div>
               <div className="space-x-4">
                 <Button size="lg">Get Started for Free</Button>
-                <Button size="lg" variant="outline">Book a Demo</Button>
+                <Button size="lg" variant="outline">
+                  Book a Demo
+                </Button>
               </div>
             </div>
           </div>
         </section>
       </main>
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <p className="text-xs text-gray-500 dark:text-gray-400">© 2023 ChatFlow. All rights reserved.</p>
+        <p className="text-xs text-gray-500 dark:text-gray-400">
+          © 2023 ChatFlow. All rights reserved.
+        </p>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
           <Link className="text-xs hover:underline underline-offset-4" href="#">
             Terms of Service
@@ -231,7 +284,7 @@ export default async function LandingPage() {
         </nav>
       </footer>
     </Container>
-  )
+  );
 }
 
 function FeatureCard({ icon, title, description }: IFeatureCard) {
@@ -241,7 +294,7 @@ function FeatureCard({ icon, title, description }: IFeatureCard) {
       <h3 className="text-xl font-bold mb-2">{title}</h3>
       <p className="text-gray-500 dark:text-gray-400">{description}</p>
     </div>
-  )
+  );
 }
 
 function StepCard({ number, title, description }: IStepCard) {
@@ -253,12 +306,22 @@ function StepCard({ number, title, description }: IStepCard) {
       <h3 className="text-xl font-bold mb-2">{title}</h3>
       <p className="text-gray-500 dark:text-gray-400">{description}</p>
     </div>
-  )
+  );
 }
 
-function PricingCard({ title, price, description, features, highlighted = false }: IPricingCardProps) {
+function PricingCard({
+  title,
+  price,
+  description,
+  features,
+  highlighted = false,
+}: IPricingCardProps) {
   return (
-    <div className={`flex flex-col p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg ${highlighted ? 'ring-2 ring-primary' : ''}`}>
+    <div
+      className={`flex flex-col p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg ${
+        highlighted ? "ring-2 ring-primary" : ""
+      }`}
+    >
       <h3 className="text-2xl font-bold mb-2">{title}</h3>
       <div className="text-4xl font-bold mb-2">{price}</div>
       <p className="text-gray-500 dark:text-gray-400 mb-4">{description}</p>
@@ -270,11 +333,17 @@ function PricingCard({ title, price, description, features, highlighted = false 
           </li>
         ))}
       </ul>
-      <Button className={`mt-auto ${highlighted ? '' : 'bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'}`}>
+      <Button
+        className={`mt-auto ${
+          highlighted
+            ? ""
+            : "bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+        }`}
+      >
         Choose Plan
       </Button>
     </div>
-  )
+  );
 }
 
 function TestimonialCard({ quote, author, company }: ITestimonialCardProps) {
@@ -286,7 +355,7 @@ function TestimonialCard({ quote, author, company }: ITestimonialCardProps) {
         <div className="text-gray-500 dark:text-gray-400">{company}</div>
       </div>
     </div>
-  )
+  );
 }
 
 function FAQItem({ question, answer }: IFAQItemProps) {
@@ -295,5 +364,5 @@ function FAQItem({ question, answer }: IFAQItemProps) {
       <h3 className="text-lg font-bold mb-2">{question}</h3>
       <p className="text-gray-500 dark:text-gray-400">{answer}</p>
     </div>
-  )
+  );
 }
