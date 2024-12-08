@@ -12,7 +12,6 @@ type Props = {
 
 const InfoBar = ({ slug }: Props) => {
   const { page } = usePaths();
-  console.log(page);
   const currentPage = PAGE_BREAD_CRUMBS.includes(page) || page == slug;
   return (
     currentPage && (
